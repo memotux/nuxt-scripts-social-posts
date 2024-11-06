@@ -1,0 +1,37 @@
+{
+  "name": "@memotux/nuxt-scripts-social-posts",
+  "version": "0.0.1",
+  "description": "Inject Nuxt Scripts components with social posts",
+  "main": "nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev"
+  },
+  "keywords": [
+    "nuxt",
+    "layers",
+    "scripts",
+    "social",
+    "posts",
+    "ui",
+    "components",
+    "content"
+  ],
+  "author": {
+    "email": "romeo@mendezfuentes.net",
+    "name": "Romeo Mendez Fuentes",
+    "url": "https://romeo.mendezfuentes.net"
+  },
+  "homepage": "https://github.com/memotux/nuxt-scripts-social-posts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/memotux/uxt-scripts-social-posts.git"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@9.12.2",
+  "dependencies": {
+    "@nuxt/scripts": "^0.9.5"
+  },
+  "devDependencies": {
+    "nuxt": "^3.14.159"
+  }
+}
