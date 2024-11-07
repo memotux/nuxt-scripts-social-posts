@@ -4,7 +4,7 @@
   "description": "Inject Nuxt Scripts components with social posts",
   "main": "nuxt.config.ts",
   "scripts": {
-    "dev": "nuxi dev"
+    "dev": "nuxi dev playground"
   },
   "keywords": [
     "nuxt",
