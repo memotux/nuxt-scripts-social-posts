@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const defaultOptions = {
+import type { ScriptXpostProps, XpostOptions } from '../../types'
+
+const defaultOptions: XpostOptions = {
   cards: 'hidden',
   conversation: 'none',
   theme: 'dark',
@@ -9,25 +11,7 @@ const defaultOptions = {
   dnt: true,
 }
 
-const props = withDefaults(
-  defineProps<{
-    link?: string
-    trigger?: string
-    id?: string
-    options?: {
-      cards?: 'hidden' | 'visible'
-      conversation?: 'none' | 'all'
-      theme?: 'dark' | 'light'
-      width?: 'auto' | number
-      align?: 'left' | 'rigth' | 'center'
-      lang?: string
-      dnt?: boolean
-    }
-  }>(),
-  {
-    trigger: 'visible',
-  }
-)
+const { id, trigger = 'visible', options } = defineProps<ScriptXpostProps>()
 
 defineOptions({
   inheritAttrs: false,
@@ -42,7 +26,7 @@ const { onLoaded, remove } = useScript(
   },
   {
     trigger: useScriptTriggerElement({
-      trigger: props.trigger,
+      trigger: trigger,
       el: container,
     }),
     use() {
@@ -53,12 +37,8 @@ const { onLoaded, remove } = useScript(
 
 onLoaded(async (twttr: Window['twttr']) => {
   await twttr.ready()
-  if (props.id) {
-    twttr.widgets.createTweet(
-      props.id,
-      container.value,
-      Object.assign(defaultOptions, props.options)
-    )
+  if (id) {
+    twttr.widgets.createTweet(id, container.value, Object.assign(defaultOptions, options))
   } else {
     twttr.widgets.load(container.value?.children[0] || null)
   }
