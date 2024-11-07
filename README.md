@@ -4,13 +4,13 @@ Nuxt Layer to extend Nuxt Scripts Facade Components with Social Posts like Faceb
 
 ## Usage
 
-Install Nuxt Script package:
+1. Install Nuxt Script package:
 
 ```bash
 pnpm add -D @nuxt/scripts
 ```
 
-Add Nuxt Scripts module to your project `nuxt.config.modules`:
+2. Add Nuxt Scripts module to your project `nuxt.config.modules`:
 
 ```ts
 export default defineNuxtConfig({
@@ -18,16 +18,14 @@ export default defineNuxtConfig({
 })
 ```
 
-Or let `nuxi` do it for you:
+3. Or let `nuxi` do it for you:
 
 ```bash
 # With Nuxi
 npx nuxi@latest module add scripts
 ```
 
----
-
-Add this Github repository to your `nuxt.config.extends`:
+4. Add this Github repository to your `nuxt.config.extends`:
 
 ```ts
 export default defineNuxtConfig({
@@ -90,6 +88,7 @@ By default, it will load on the `visible` event.
     id="1853852164587655360"
     :options="{ align: 'center' }"
   />
+  <!-- Alternative -->
   <ScriptTwitterPost
     link="https://twitter.com/vuejsdevelopers/status/1853852164587655360"
   />
