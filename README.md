@@ -63,13 +63,14 @@ The `ScriptTwitterPost` component accepts the following props:
 - `link`: Full URL to X post
 - `trigger`: The trigger event to load the YouTube Player. Default is `visible`. See [Element Event Triggers](https://scripts.nuxt.com/docs/guides/script-triggers#element-event-triggers) for more information.
 - `id`: The numerical ID of the desired Tweet. `required`
-- `cards`: When set to hidden, links in a Tweet are not expanded to photo, video, or link previews. Default: `hidden`.
-- `conversation`: When set to none, only the cited Tweet will be displayed even if it is in reply to another Tweet. Default: `none`.
-- `theme`: When set to dark, displays Tweet with light text over a dark background. Default: `dark`.
-- `width`: The maximum width of the rendered Tweet in whole pixels. This value should be between 250 and 550 pixels. Default: `325`.
-- `align`: Float the Tweet left, right, or center relative to its container. Typically set to allow text or other content to wrap around the Tweet. Default: `right`.
-- `lang`: A supported Twitter language code. Loads text components in the specified language. Note: does not affect the text of the cited Tweet. Default: `es`.
-- `dnt`: When set to true, the Tweet and its embedded page on your site are not used for purposes that include personalized suggestions and personalized ads. Default: `true`.
+- `options`:
+  - `cards`: When set to hidden, links in a Tweet are not expanded to photo, video, or link previews. Default: `hidden`.
+  - `conversation`: When set to none, only the cited Tweet will be displayed even if it is in reply to another Tweet. Default: `none`.
+  - `theme`: When set to dark, displays Tweet with light text over a dark background. Default: `dark`.
+  - `width`: The maximum width of the rendered Tweet in whole pixels. This value should be between 250 and 550 pixels. Default: `325`.
+  - `align`: Float the Tweet left, right, or center relative to its container. Typically set to allow text or other content to wrap around the Tweet. Default: `right`.
+  - `lang`: A supported Twitter language code. Loads text components in the specified language. Note: does not affect the text of the cited Tweet. Default: `es`.
+  - `dnt`: When set to true, the Tweet and its embedded page on your site are not used for purposes that include personalized suggestions and personalized ads. Default: `true`.
 
 ```ts
 interface ScriptXpostProps {
