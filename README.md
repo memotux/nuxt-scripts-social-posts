@@ -85,6 +85,11 @@ By default, it will load on the `visible` event.
 
 ```vue
 <template>
+  <!-- Recomended -->
+  <ScriptTwitterPost
+    id="1853852164587655360"
+    :options="{ align: 'center' }"
+  />
   <ScriptTwitterPost
     link="https://twitter.com/vuejsdevelopers/status/1853852164587655360"
   />
