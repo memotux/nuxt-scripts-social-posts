@@ -7,5 +7,9 @@
     <ScriptTwitterPost
       link="https://twitter.com/vuejsdevelopers/status/1853852164587655360"
     />
+    <ScriptTwitterPost
+      id="1853852164587655360"
+      :options="{ align: 'center' }"
+    />
   </div>
 </template>
