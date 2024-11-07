@@ -1,59 +1,33 @@
 <script setup lang="ts">
-defineProps({
-  link: {
-    type: String,
-    required: true,
-  },
-  maxwidth: {
-    type: Number,
-    default: 480,
-    validate: (val: number) => val >= 220 && val <= 550,
-  },
-  hide_media: {
-    type: Boolean,
-    default: false,
-  },
-  hide_thread: {
-    type: Boolean,
-    default: false,
-  },
-  omit_script: {
-    type: Boolean,
-    default: true,
-  },
-  align: {
-    type: String,
-    default: 'center',
-    validate: (val: string) => ['left', 'right', 'center', 'none'].includes(val),
-  },
-  related: {
-    type: String,
-    default: undefined,
-  },
-  lang: {
-    type: String,
-    default: 'es',
-  },
-  theme: {
-    type: String,
-    default: 'dark',
-    validate: (val: string) => ['dark', 'light'].includes(val),
-  },
-  link_color: {
-    type: String,
-    default: undefined,
-    validate: (val: string) => val || val.startsWith('#'),
-  },
-  widget_type: {
-    type: String,
-    default: undefined,
-    validate: (val: string) => val || val === 'video',
-  },
-  dnt: {
-    type: Boolean,
-    default: true,
-  },
-})
+const defaultOptions = {
+  cards: 'hidden',
+  conversation: 'none',
+  theme: 'dark',
+  width: 'auto',
+  align: 'left',
+  lang: 'es',
+  dnt: true,
+}
+
+const props = withDefaults(
+  defineProps<{
+    link?: string
+    trigger?: string
+    id?: string
+    options?: {
+      cards?: 'hidden' | 'visible'
+      conversation?: 'none' | 'all'
+      theme?: 'dark' | 'light'
+      width?: 'auto' | number
+      align?: 'left' | 'rigth' | 'center'
+      lang?: string
+      dnt?: boolean
+    }
+  }>(),
+  {
+    trigger: 'visible',
+  }
+)
 
 defineOptions({
   inheritAttrs: false,
@@ -68,7 +42,7 @@ const { onLoaded, remove } = useScript(
   },
   {
     trigger: useScriptTriggerElement({
-      trigger: 'visible',
+      trigger: props.trigger,
       el: container,
     }),
     use() {
@@ -79,7 +53,15 @@ const { onLoaded, remove } = useScript(
 
 onLoaded(async (twttr: Window['twttr']) => {
   await twttr.ready()
-  twttr.widgets.load(container.value)
+  if (props.id) {
+    twttr.widgets.createTweet(
+      props.id,
+      container.value,
+      Object.assign(defaultOptions, props.options)
+    )
+  } else {
+    twttr.widgets.load(container.value?.children[0] || null)
+  }
 })
 
 onUnmounted(() => {
@@ -88,18 +70,21 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div>
+  <div ref="container">
     <blockquote
-      ref="container"
+      v-if="link && !id"
       class="twitter-tweet"
-      :align="align"
-      :data-width="maxwidth"
-      :data-dnt="dnt"
-      :data-theme="theme"
+      :data-align="options?.align || 'center'"
+      :data-width="options?.width || 'auto'"
+      :data-dnt="options?.dnt || true"
+      :data-theme="options?.theme || 'dark'"
+      :data-cards="options?.cards || 'hidden'"
+      :data-conversation="options?.conversation || 'none'"
+      :data-lang="options?.lang || 'es'"
     >
       <p
         dir="ltr"
-        :lang="lang"
+        :lang="options?.lang || 'es'"
       >
         <a :href="link">Loading ...</a>
       </p>
