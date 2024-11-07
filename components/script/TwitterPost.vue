@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { ScriptXpostProps, XpostOptions } from '../../types'
+import type { ScriptXpostProps } from '../../types'
 
-const defaultOptions: XpostOptions = {
+const defaultOptions: ScriptXpostProps['options'] = {
   cards: 'hidden',
   conversation: 'none',
   theme: 'dark',
@@ -16,6 +16,8 @@ const { id, trigger = 'visible', options } = defineProps<ScriptXpostProps>()
 defineOptions({
   inheritAttrs: false,
 })
+
+const mergeOptions = Object.assign(defaultOptions, options)
 
 const container = useTemplateRef<HTMLDivElement>('container')
 
@@ -38,7 +40,7 @@ const { onLoaded, remove } = useScript(
 onLoaded(async (twttr: Window['twttr']) => {
   await twttr.ready()
   if (id) {
-    twttr.widgets.createTweet(id, container.value, Object.assign(defaultOptions, options))
+    twttr.widgets.createTweet(id, container.value, mergeOptions)
   } else {
     twttr.widgets.load(container.value?.children[0] || null)
   }
@@ -54,17 +56,17 @@ onUnmounted(() => {
     <blockquote
       v-if="link && !id"
       class="twitter-tweet"
-      :data-align="options?.align || 'center'"
-      :data-width="options?.width || 'auto'"
-      :data-dnt="options?.dnt || true"
-      :data-theme="options?.theme || 'dark'"
-      :data-cards="options?.cards || 'hidden'"
-      :data-conversation="options?.conversation || 'none'"
-      :data-lang="options?.lang || 'es'"
+      :data-align="mergeOptions.align"
+      :data-width="mergeOptions.width"
+      :data-dnt="mergeOptions.dnt"
+      :data-theme="mergeOptions.theme"
+      :data-cards="mergeOptions.cards"
+      :data-conversation="mergeOptions.conversation"
+      :data-lang="mergeOptions.lang"
     >
       <p
         dir="ltr"
-        :lang="options?.lang || 'es'"
+        :lang="mergeOptions.lang || 'es'"
       >
         <a :href="link">Loading ...</a>
       </p>
