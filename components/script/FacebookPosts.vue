@@ -1,10 +1,14 @@
 <script setup lang="ts">
-const props = defineProps<{
-  link: string
-  dataWidth?: number
-  caption?: string
-  title?: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    link: string
+    trigger?: string
+    dataWidth?: number
+    caption?: string
+    title?: string
+  }>(),
+  { trigger: 'visible' }
+)
 
 const fbCardStyle = {
   maxWidth: props.dataWidth ? `${props.dataWidth}px` : '80%',
@@ -29,7 +33,7 @@ const { onLoaded, remove } = useScript(
   },
   {
     trigger: useScriptTriggerElement({
-      trigger: 'visible',
+      trigger: props.trigger,
       el: useTemplateRef('container'),
     }),
     use() {
@@ -59,7 +63,6 @@ onUnmounted(() => {
 <template>
   <div
     ref="container"
-    class="q-mx-auto q-mb-md"
     :style="fbCardStyle"
   >
     <div
