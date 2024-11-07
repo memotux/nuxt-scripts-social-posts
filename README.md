@@ -2,6 +2,41 @@
 
 Nuxt Layer to extend Nuxt Scripts Facade Components with Social Posts like Facebook Posts or Videos, X (Twitter) Posts.
 
+## Usage
+
+Install Nuxt Script package:
+
+```bash
+pnpm add -D @nuxt/scripts
+```
+
+Add Nuxt Scripts module to your project `nuxt.config.modules`:
+
+```ts
+export default defineNuxtConfig({
+  modules: ['@nuxt/scripts'],
+})
+```
+
+Or let `nuxi` do it for you:
+
+```bash
+# With Nuxi
+npx nuxi@latest module add scripts
+```
+
+---
+
+Add this Github repository to your `nuxt.config.extends`:
+
+```ts
+export default defineNuxtConfig({
+  extends: ['github:memotux/nuxt-scripts-social-posts'],
+})
+```
+
+You can read more about this `extends` in [Official Nuxt Docs](https://nuxt.com/docs/getting-started/layers#usage)
+
 ## Facade Components
 
 ### ScriptFacebookPosts
