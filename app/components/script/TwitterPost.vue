@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ScriptXpostProps } from '../../types'
+import type { ScriptXpostProps } from '../../../types'
 
 const defaultOptions: ScriptXpostProps['options'] = {
   cards: 'hidden',

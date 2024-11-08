@@ -39,7 +39,7 @@ const { onLoaded, remove } = useScript(
     use() {
       return () => {
         window.FB.init({
-          appId: '233305715281951',
+          appId: '',
           xfbml: true,
           version: 'v3.2',
         })
