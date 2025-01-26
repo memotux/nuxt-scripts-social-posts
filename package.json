@@ -27,11 +27,11 @@
     "url": "https://github.com/memotux/uxt-scripts-social-posts.git"
   },
   "license": "MIT",
-  "packageManager": "pnpm@9.12.2",
+  "packageManager": "pnpm@9.15.4",
   "dependencies": {
     "@nuxt/scripts": "^0.9.5"
   },
   "devDependencies": {
-    "nuxt": "^3.14.159"
+    "nuxt": "^3.15.3"
   }
 }
