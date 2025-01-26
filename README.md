@@ -53,6 +53,9 @@ By default, it will load on the `visible` event.
 </template>
 ```
 
+> [!INFO]
+> Remember to add your FB App ID to `.env`.
+
 #### Props
 
 The `ScriptFacebookPosts` component accepts the following props:
@@ -101,7 +104,7 @@ The `ScriptTwitterPost` component accepts the following props:
 
 - `link`: Full URL to X post
 - `trigger`: The trigger event to load the YouTube Player. Default is `visible`. See [Element Event Triggers](https://scripts.nuxt.com/docs/guides/script-triggers#element-event-triggers) for more information.
-- `id`: The numerical ID of the desired Tweet. `required`
+- `id`: The numerical ID of the desired post.
 - `options`:
   - `cards`: When set to hidden, links in a Tweet are not expanded to photo, video, or link previews. Default: `hidden`.
   - `conversation`: When set to none, only the cited Tweet will be displayed even if it is in reply to another Tweet. Default: `none`.
@@ -113,7 +116,7 @@ The `ScriptTwitterPost` component accepts the following props:
 
 ```ts
 interface ScriptXpostProps {
-  link: string
+  link?: string
   trigger?: string
   id?: string
   options?: XpostOptions
