@@ -53,7 +53,7 @@ By default, it will load on the `visible` event.
 </template>
 ```
 
-> [!INFO]
+> [!NOTE]
 > Remember to add your FB App ID to `.env`.
 
 #### Props
